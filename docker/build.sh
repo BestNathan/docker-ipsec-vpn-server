@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t mobilejazz/docker-ipsec-vpn-server .
+docker build -t bestnathan/docker-ipsec-vpn-server .

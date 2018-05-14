@@ -1,12 +1,20 @@
 #!/bin/sh
 
 VPN_USER="$1"
+VPN_PASSWORD = "$2"
 
 if [ -z "$VPN_USER" ]; then
-  echo "Usage: $0 username" >&2
-  echo "Example: $0 jordi" >&2
+  echo "Usage: $0 username password" >&2
+  echo "Example: $0 nathan qqq111" >&2
   exit 1
 fi
+
+if [ -z "$VPN_PASSWORD" ]; then
+  echo "Usage: $0 username password" >&2
+  echo "Example: $0 nathan qqq111" >&2
+  exit 1
+fi
+
 
 case "$VPN_USER" in
   *[\\\"\']*)
@@ -18,7 +26,7 @@ esac
 SHARED_SECRET=$(cut -d'"' -f2 /etc/ipsec.secrets)
 echo "Shared secret: $SHARED_SECRET"
 
-VPN_PASSWORD="$(LC_CTYPE=C tr -dc 'A-HJ-NPR-Za-km-z2-9' < /dev/urandom | head -c 20)"
+#VPN_PASSWORD="$(LC_CTYPE=C tr -dc 'A-HJ-NPR-Za-km-z2-9' < /dev/urandom | head -c 20)"
 VPN_PASSWORD_ENC=$(openssl passwd -1 "$VPN_PASSWORD")
 echo "Password for user is: $VPN_PASSWORD"
 
