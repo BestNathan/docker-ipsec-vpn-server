@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VPN_USER="$1"
-VPN_PASSWORD = "$2"
+VPN_PASSWORD="$2"
 
 if [ -z "$VPN_USER" ]; then
   echo "Usage: $0 username password" >&2
